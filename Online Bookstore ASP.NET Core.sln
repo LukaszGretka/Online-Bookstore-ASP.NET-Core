@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineBookstore.MVC", "Online Bookstore ASP.NET Core\OnlineBookstore.MVC.csproj", "{C0EAEA06-EBF1-4FE5-9B38-E4F027CF40E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineBookstore.MVC", "OnlineBookstore.MVC\OnlineBookstore.MVC.csproj", "{C0EAEA06-EBF1-4FE5-9B38-E4F027CF40E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBookstore.API", "OnlineBookstore.API\OnlineBookstore.API.csproj", "{EDE6C4DF-28E5-4016-804E-043C1FAEB580}"
 EndProject
