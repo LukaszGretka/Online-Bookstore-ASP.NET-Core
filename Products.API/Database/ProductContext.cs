@@ -15,5 +15,16 @@ namespace Products.API.Database
         }
 
         public DbSet<ProductBook> Books { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ProductBook>().HasIndex(x => x.ID).IsUnique();
+        }
     }
 }

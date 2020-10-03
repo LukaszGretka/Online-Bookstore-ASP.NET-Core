@@ -9,13 +9,15 @@ using Products.API.Model;
 
 namespace Products.API.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ProductController : Controller
     {
         private readonly ProductContext _productContext;
 
         public ProductController(ProductContext productContext)
         {
-            _productContext = productContext ?? throw new ArgumentNullException(nameof(productContext)); ;
+            _productContext = productContext ?? throw new ArgumentNullException(nameof(productContext));
         }
 
         [HttpGet]

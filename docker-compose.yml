@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  products.api:
+    image: ${DOCKER_REGISTRY-}productsapi
+    build:
+      context: .
+      dockerfile: Products.API/Dockerfile
+
+  onlinebookstore.mvc:
+    image: ${DOCKER_REGISTRY-}onlinebookstoremvc
+    build:
+      context: .
+      dockerfile: OnlineBookstore.MVC/Dockerfile
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
