@@ -41,6 +41,7 @@ namespace OnlineBookstore.API
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
             });
         }

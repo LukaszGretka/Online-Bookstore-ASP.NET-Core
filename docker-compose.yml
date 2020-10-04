@@ -6,13 +6,16 @@ services:
     build:
       context: .
       dockerfile: Products.API/Dockerfile
+    ports:
+      - 32768:80
 
   onlinebookstore.mvc:
     image: ${DOCKER_REGISTRY-}onlinebookstoremvc
     build:
       context: .
       dockerfile: OnlineBookstore.MVC/Dockerfile
-
+    ports:
+      - 32769:80
   db:
     image: postgres
     restart: always
