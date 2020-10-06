@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>12989b42-fc0f-4f24-b5a4-aedbe70b10fd</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/product/book/1</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/</DockerServiceUrl>
     <DockerServiceName>products.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

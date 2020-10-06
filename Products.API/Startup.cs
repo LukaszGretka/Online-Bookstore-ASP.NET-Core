@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Products.API.Database;
 
-namespace OnlineBookstore.API
+namespace Products.API
 {
     public class Startup
     {
@@ -23,7 +23,7 @@ namespace OnlineBookstore.API
             services.AddControllers();
             services.AddDbContext<ProductContext>(builder =>
             {
-                builder.UseNpgsql(Configuration["ConnectionStrings:DbConnectionString"]);
+                builder.UseNpgsql(Configuration.GetConnectionString("Product.API.Database.ConnectionString"));
             });
         }
 

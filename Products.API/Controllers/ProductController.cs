@@ -22,37 +22,64 @@ namespace Products.API.Controllers
         }
 
         [HttpPost]
-        [Route("book/add")]
+        [Route("add/processor")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> AddNewBookAsync([FromBody]ProductBook book)
+        public async Task<IActionResult> AddProcessorAsync([FromBody]Processor processor)
         {
-            var productBook = new ProductBook
+            var productProcessor = new Processor
             {
-                Title = book.Title,
-                Description = book.Description,
-                Genre = book.Genre,
-                Pages = book.Pages,
-                Price = book.Price
+                Name = processor.Name,
+                Description = processor.Description,
+                Socket = processor.Socket,
+                StandardFrequency = processor.StandardFrequency,
+                TurboFrequency = processor.TurboFrequency,
+                Price = processor.Price
             };
 
-            _productContext.Books.Add(productBook);
+            _productContext.Processors.Add(productProcessor);
             await _productContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBookByIdAsync), new { id = productBook.ID }, productBook);
+            return CreatedAtAction(nameof(GetProductByIdAsync), new { id = productProcessor.ID }, productProcessor);
         }
 
-        [HttpGet]   
-        [Route("book/{id:int}")]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(ProductBook), (int)HttpStatusCode.OK)]
-        [ActionName(nameof(GetBookByIdAsync))]
-        public async Task<ActionResult<ProductBook>> GetBookByIdAsync(int id)
+
+        [HttpPost]
+        [Route("add/graphicCard")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> AddGraphicCardAsync([FromBody]GraphicCard graphicCard)
         {
-            var book = await _productContext.Books.SingleOrDefaultAsync(book => book.ID == id);
+            var productGraphicCard = new GraphicCard
+            {
+                Name = graphicCard.Name,
+                Description = graphicCard.Description,
+                CoreFrequency = graphicCard.CoreFrequency,
+                BoostCoreFrequency = graphicCard.BoostCoreFrequency,
+                Chipset = graphicCard.Chipset,
+                Memory = graphicCard.Memory,
+                ID = graphicCard.ID,
+                Price = graphicCard.Price
+            };
+
+            _productContext.GraphicCards.Add(productGraphicCard);
+            await _productContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetProductByIdAsync), new { id = productGraphicCard.ID }, productGraphicCard);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Processor), (int)HttpStatusCode.OK)]
+        [ActionName(nameof(GetProductByIdAsync))]
+        public async Task<ActionResult<Product>> GetProductByIdAsync(int id)
+        {
+            //TODO: add service for multi products
+            var book = await _productContext.Processors.SingleOrDefaultAsync(book => book.ID == id);
 
             if (book is null)
-            {   
+            {
                 return NotFound();
             }
 
