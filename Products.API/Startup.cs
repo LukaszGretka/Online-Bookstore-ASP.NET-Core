@@ -21,6 +21,7 @@ namespace Products.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen();
             services.AddDbContext<ProductContext>(builder =>
             {
                 builder.UseNpgsql(Configuration.GetConnectionString("Product.API.Database.ConnectionString"));
@@ -43,6 +44,12 @@ namespace Products.API
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product.API");
             });
         }
     }

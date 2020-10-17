@@ -6,8 +6,7 @@ namespace Products.API.Controllers
     {
         public IActionResult Index()
         {
-            // TODO : should redirect to swagger page
-            return Ok();
+            return new RedirectResult("~/swagger");
         }
     }
 }

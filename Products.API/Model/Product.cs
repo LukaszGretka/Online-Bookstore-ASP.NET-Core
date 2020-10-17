@@ -2,9 +2,9 @@
 
 namespace Products.API.Model
 {
-    abstract public class Product
+    public abstract class Product
     {
-        public int ID { get; set; }
+        public int ID { get; private set; }
 
         [Required]
         public string Name { get; set; }
