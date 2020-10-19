@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "0da5a5f1-4a62-46b3-82aa-78fbd2d66924",
+		"name": "ComputerPartsOnlineShop API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Processor",
+			"item": [
+				{
+					"name": "Add processor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ryzen 1200\",\r\n  \"description\": \"4 Core processor\",\r\n  \"price\": 50,\r\n  \"producer\": \"AMD\",\r\n  \"socket\": \"AM4\",\r\n  \"standardFrequency\": 3200,\r\n  \"turboFrequency\": 3600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{hostAddress}}/Processor/add",
+							"protocol": "https",
+							"host": [
+								"{{hostAddress}}"
+							],
+							"path": [
+								"Processor",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get processor by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{hostAddress}}/Processor/1",
+							"protocol": "https",
+							"host": [
+								"{{hostAddress}}"
+							],
+							"path": [
+								"Processor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get processors by producent name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{hostAddress}}/Processor/producer/AMD",
+							"protocol": "https",
+							"host": [
+								"{{hostAddress}}"
+							],
+							"path": [
+								"Processor",
+								"producer",
+								"AMD"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update processor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 8,\r\n    \"name\": \"Ryzen 1600\",\r\n    \"description\": \"6 Core processor\",\r\n    \"price\": 95,\r\n    \"producer\": \"AMD\",\r\n    \"socket\": \"AM4\",\r\n    \"standardFrequency\": 3600,\r\n    \"turboFrequency\": 3800\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{hostAddress}}/Processor/update",
+							"protocol": "https",
+							"host": [
+								"{{hostAddress}}"
+							],
+							"path": [
+								"Processor",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f89eda08-6732-4d05-bf90-a0e04338e42a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "15878e02-9fae-4097-a1b8-7c2c6f11d537",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "f63f2ce1-7038-464d-a7bc-a6ca325581bc",
+			"key": "hostAddress",
+			"value": "localhost:32772"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
