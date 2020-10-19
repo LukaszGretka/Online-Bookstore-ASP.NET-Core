@@ -5,7 +5,7 @@ namespace Products.API.Model
 {
     public class Processor : Product
     {
-        [Required]
+        [Required]       
         public string Producer { get; set; }
 
         [Required]

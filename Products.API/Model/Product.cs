@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Products.API.Model
 {
     public abstract class Product
     {
-        public int ID { get; private set; }
+        [Key]
+        public int ID { get; set; }
 
         [Required]
         public string Name { get; set; }

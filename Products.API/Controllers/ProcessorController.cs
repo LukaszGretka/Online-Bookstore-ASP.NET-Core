@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Products.API.Common;
 using Products.API.Database;
 using Products.API.Model;
 
@@ -54,9 +55,9 @@ namespace Products.API.Controllers
         [ActionName(nameof(GetProcessorByIdAsync))]
         public async Task<ActionResult<Processor>> GetProcessorByIdAsync(int id)
         {
-            if (id < 0)
+            if (id <= 0)
             {
-                return BadRequest();
+                return BadRequest(ErrorResponse.InvalidParameterValue(nameof(id)));
             }
 
             var processor = await _productContext.Processors.SingleOrDefaultAsync(item => item.ID == id);
@@ -79,7 +80,7 @@ namespace Products.API.Controllers
         {
             if (string.IsNullOrEmpty(producerName))
             {
-                return BadRequest(new Error($"Parameter '{nameof(producerName)}' is required."));
+                return BadRequest(ErrorResponse.InvalidParameterValue(nameof(producerName)));
             }
 
             var processors = await _productContext.Processors.Where(item => item.Producer.ToLower().Equals(producerName.ToLower())).ToListAsync();
@@ -96,13 +97,19 @@ namespace Products.API.Controllers
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        public async Task<ActionResult> UpdateProcessorAsync([FromBody]Processor processorToUpdate)
+        public async Task<ActionResult> UpdateProcessorAsync([FromBody] Processor processorToUpdate)
         {
-            var processorItem = await _productContext.Processors.SingleOrDefaultAsync(item => item.ID == processorToUpdate.ID);
+            if (processorToUpdate.ID <= 0)
+            {
+                return BadRequest(ErrorResponse.InvalidParameterValue(nameof(processorToUpdate.ID)));
+            }
+
+            var processorItem = await _productContext.Processors.AsNoTracking()
+                                                     .SingleOrDefaultAsync(item => item.ID == processorToUpdate.ID);
 
             if (processorItem is null)
             {
-                return NotFound(new Error($"Item with 'ID'= {processorToUpdate.ID} cannot be found."));
+                return NotFound(ErrorResponse.ItemWithValueNotFound(nameof(processorItem), processorToUpdate.ID));
             }
 
             processorItem = processorToUpdate;
@@ -120,16 +127,16 @@ namespace Products.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult> DeleteProcessorByIdAsync(int id)
         {
-            if (id < 0)
+            if (id <= 0)
             {
-                return BadRequest(new Error($"Parameter '{nameof(id)}' must be grater than 0."));
+                return BadRequest(ErrorResponse.InvalidParameterValue(nameof(id)));
             }
 
             var processorItem = _productContext.Processors.SingleOrDefault(item => item.ID.Equals(id));
 
             if (processorItem is null)
             {
-                return NotFound(new Error($"Item with '{nameof(id)}'= {id} cannot be found."));
+               return NotFound(ErrorResponse.ItemWithValueNotFound(nameof(processorItem), id));
             }
 
             _productContext.Processors.Remove(processorItem);
