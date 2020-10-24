@@ -13,6 +13,13 @@ COPY . .
 WORKDIR "/src/Products.API"
 RUN dotnet build "Products.API.csproj" -c Release -o /app/build
 
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+
+RUN dotnet tool install --global dotnet-ef
+WORKDIR "/src/Products.API"
+RUN dotnet ef database update
+
 FROM build AS publish
 RUN dotnet publish "Products.API.csproj" -c Release -o /app/publish
 

@@ -24,7 +24,7 @@ namespace Products.API
             services.AddSwaggerGen();
             services.AddDbContext<ProductContext>(builder =>
             {
-                builder.UseNpgsql(Configuration.GetConnectionString("Product.API.Database.ConnectionString"));
+                builder.UseNpgsql(Configuration.GetConnectionString("Postgres.Product.API.Database.ConnectionString"));
             });
         }
 

@@ -8,6 +8,7 @@ services:
       dockerfile: Products.API/Dockerfile
     ports:
       - 32768:80
+      - 32769:443
     depends_on:
       - "db"
 
@@ -15,6 +16,6 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: db-password
     ports:
       - 5432:5432
