@@ -15,9 +15,9 @@ namespace Products.API.Common
             return new ErrorResponse($"Invalid value of parameter: '{parameterName}'");
         }
 
-        internal static ErrorResponse ItemWithValueNotFound(string parameterName, object value)
+        internal static ErrorResponse ItemWithIdNotFound(string parameterName, int id)
         {
-            return new ErrorResponse($"Item '{parameterName}' with value: '{value}' not found");
+            return new ErrorResponse($"Item '{parameterName}' with id: '{id}' not found");
         }
     }
 }

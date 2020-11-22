@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Products.API.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Products.API.Model
 {
-    public abstract class Product
+    public class Product
     {
         [Key]
         public int ID { get; set; }
@@ -16,5 +18,17 @@ namespace Products.API.Model
 
         [Required]
         public decimal? Price { get; set; }
+
+        [Required]
+        public string Producer { get; set; }
+
+        [Required]
+        public Category Category { get; set; }
+
+        [Required]
+        public Dictionary<string, string> Specification { get; set; }
+
+        [Required]
+        public int AvailableQuantity { get; set; }
     }
 }

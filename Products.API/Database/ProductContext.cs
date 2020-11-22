@@ -10,8 +10,7 @@ namespace Products.API.Database
 
         }
 
-        public DbSet<Processor> Processors { get; set; }
-        public DbSet<GraphicCard> GraphicCards { get; set; }
+        public DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,8 +20,7 @@ namespace Products.API.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Processor>().HasIndex(x => x.ID).IsUnique();
-            modelBuilder.Entity<GraphicCard>().HasIndex(x => x.ID).IsUnique();
+            modelBuilder.Entity<Product>().HasIndex(x => x.ID).IsUnique();
         }
     }
 }

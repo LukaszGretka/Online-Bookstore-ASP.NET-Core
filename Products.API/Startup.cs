@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Products.API.Database;
+using Products.API.Extensions;
 
 namespace Products.API
 {
@@ -22,10 +21,7 @@ namespace Products.API
         {
             services.AddControllers();
             services.AddSwaggerGen();
-            services.AddDbContext<ProductContext>(builder =>
-            {
-                builder.UseNpgsql(Configuration.GetConnectionString("Postgres.Product.API.Database.ConnectionString"));
-            });
+            services.AddDatabaseService(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
